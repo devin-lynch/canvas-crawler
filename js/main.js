@@ -68,10 +68,11 @@ class Crawler {
 // define game objects
 const hero = new Crawler(10, 10, 35, 35, 'hotpink')
 const ogre = new Crawler(600, 200, 100, 150, 'green')
+const bullets = []
 
 // define movement handler function
 function movementHandler(e) {
-    // console.log(e)
+    console.log(e)
     const speed = 10 // how many pixels the hero moves
     switch (e.key) {
         case('w'):
@@ -100,6 +101,9 @@ function movementHandler(e) {
             hero.x += speed
             if (hero.x + hero.width > canvas.width)
             hero.x = canvas.width - hero.width
+            break
+        case(' '):
+            bullets.push(new Crawler(hero.x + hero.width, hero.y, 10, 10, 'black'))
             break
     }
 }
@@ -140,6 +144,13 @@ function gameLoop() {
     if (ogre.alive){
 
         ogre.render()
+    }
+    // loop over all the bullets and render them
+    for (let i = 0; i < bullets.length; i++) {
+        // update the bullets
+        bullets[i].x += 30
+        // update the bullets
+        bullets[i].render()
     }
 }   
 
