@@ -69,6 +69,14 @@ class Crawler {
 const hero = new Crawler(10, 10, 35, 35, 'hotpink')
 const ogre = new Crawler(600, 200, 100, 150, 'green')
 const bullets = []
+const shrekBullets = []
+
+
+// shrek is fighting back
+setInterval(() => {
+    shrekBullets.push(new Crawler(ogre.x, ogre.y, 10, 10, 'blue'))
+}, 200)
+
 
 // define movement handler function
 function movementHandler(e) {
@@ -151,6 +159,13 @@ function gameLoop() {
         bullets[i].x += 30
         // update the bullets
         bullets[i].render()
+    }
+
+    //loop over the ogre's bullets
+    for (let i = 0; i < shrekBullets.length; i++) {
+        shrekBullets[i].x -= 30
+        // update the bullet
+        shrekBullets[i].render()
     }
 }   
 
