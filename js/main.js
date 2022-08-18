@@ -77,18 +77,29 @@ function movementHandler(e) {
         case('w'):
             // move the hero up
             hero.y -= speed
+            if (hero.y < 0) {
+                hero.y = 0
+            }
             break
         case('s'):
             // move the hero down
             hero.y += speed
+            if (hero.y + hero.height > canvas.height) {
+                hero.y = canvas.height - hero.height
+            }
             break
         case('a'):
             // move the hero left
             hero.x -= speed
+            if (hero.x < 0) {
+                hero.x = 0
+            }
             break
         case('d'):
             // move the hero right
             hero.x += speed
+            if (hero.x + hero.width > canvas.width)
+            hero.x = canvas.width - hero.width
             break
     }
 }
